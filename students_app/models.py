@@ -15,7 +15,8 @@ class Student(models.Model):
         max_length=1,
         choices=GENDER_CHOICES,
         )
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    # course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    course = models.ManyToManyField(Course)
 
     class Meta:
         ordering = ['first_name']

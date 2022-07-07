@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'courses_app',
     'students_app',
+    'employee_app',
     'django_filters',
 ]
 

@@ -1,13 +1,13 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from students_app.models import Student
-from students_app.serializers import StudentSerializers
+from employee_app.models import Employee
+from employee_app.serializers import EmployeeSerializers
 from rest_framework import viewsets
 
-class StudentViewSet(viewsets.ReadOnlyModelViewSet):
+class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
     '''предоставляет для фронта информацию о курсах'''
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializers
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializers
     lookup_field = 'pk'
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['first_name']

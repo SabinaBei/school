@@ -4,7 +4,8 @@ from students_app.models import Student
 from students_app.serializers import StudentSerializers
 from rest_framework import viewsets
 
-class StudentViewSet(viewsets.ReadOnlyModelViewSet):
+# class StudentViewSet(viewsets.ReadOnlyModelViewSet):
+class StudentViewSet(viewsets.ModelViewSet):
     '''предоставляет для фронта информацию о курсах'''
     queryset = Student.objects.all()
     serializer_class = StudentSerializers
@@ -13,3 +14,5 @@ class StudentViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ['first_name']
     search_fields = ['first_name', 'last_name']
     ordering_fields = ['first_name', 'last_name']
+
+

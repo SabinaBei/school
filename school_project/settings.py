@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'courses_app',
     'students_app',
     'employee_app',
+    'school_app',
     'django_filters',
     'django_registration',
 ]

@@ -15,7 +15,7 @@ class CourseFilter(filters.FilterSet):
         fields = ['price']
 
 
-class CourseViewSet(viewsets.ReadOnlyModelViewSet):
+class CourseViewSet(viewsets.ModelViewSet):
     '''предоставляет для фронта информацию о курсах'''
     queryset = Course.objects.all()
     serializer_class = CourseSerializers

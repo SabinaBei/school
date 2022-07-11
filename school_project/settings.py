@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'school_app',
     'django_filters',
     'django_registration',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [

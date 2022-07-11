@@ -1,6 +1,7 @@
 from django.db import models
 from courses_app.models import Course
 from school_app.models import School
+from django.contrib.auth.models import User
 
 
 class Department(models.Model):
@@ -44,11 +45,12 @@ class Position(models.Model):
 
 
 class Employee(models.Model):
-    first_name = models.CharField(max_length=155)
-    last_name = models.CharField(max_length=155)
-    date_of_birth = models.DateField()
+    # first_name = models.CharField(max_length=155)
+    # last_name = models.CharField(max_length=155)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='employee', blank=True, null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
     phone_number = models.CharField(max_length=20)
-    email = models.EmailField(null=True, blank=True)
+    # email = models.EmailField(null=True, blank=True)
     FEMALE = 'F'
     MALE = 'M'
     GENDER_CHOICES = [(FEMALE, 'Female'),(MALE, 'Male'),]
@@ -64,22 +66,25 @@ class Employee(models.Model):
 
 
     class Meta:
-        ordering = ['first_name']
+        # ordering = ['first_name']
+        ordering = ['user']
         unique_together = (
-            'first_name',
-            'last_name',
+            # 'first_name',
+            # 'last_name',
+            'user',
             'date_of_birth',
             'phone_number',
-            'email',
+            # 'email',
         )
 
 #imya i familiya s zaglavnoi bukvi
-    def save(self, *args, **kwargs):
-        for field_name in ['first_name', 'last_name']:
-            val = getattr(self, field_name, False)
-            if val:
-                setattr(self, field_name, val.capitalize())
-        super(Employee, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     for field_name in ['first_name', 'last_name']:
+    #         val = getattr(self, field_name, False)
+    #         if val:
+    #             setattr(self, field_name, val.capitalize())
+    #     super(Employee, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.first_name
+        # return self.first_name
+        return f'{self.phone_number}, {self.user}'

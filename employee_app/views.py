@@ -10,9 +10,11 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializers
     lookup_field = 'pk'
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['first_name']
-    search_fields = ['first_name', 'last_name']
-    ordering_fields = ['first_name', 'last_name']
+    filterset_fields = ['position']
+    # search_fields = ['first_name', 'last_name']
+    search_fields = ['user__username']
+    # ordering_fields = ['first_name', 'last_name']
+    ordering_fields = ['user']
 
 
 class PositionViewSet(viewsets.ModelViewSet):

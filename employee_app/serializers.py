@@ -11,7 +11,7 @@ class EmployeeSerializers(serializers.ModelSerializer):
 class PositionSerializers(serializers.ModelSerializer):
     class Meta:
         model = Position
-        fields = ['name', 'duration', 'description', 'permission']
+        fields = ['name', 'duration', 'description']
 
 
 class DepartmentSerializers(serializers.ModelSerializer):

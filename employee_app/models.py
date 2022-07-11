@@ -59,7 +59,7 @@ class Employee(models.Model):
     # course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     course = models.ManyToManyField(Course)
     position = models.ForeignKey(Position, on_delete=models.CASCADE, null=True)
-    school = models.CharField(max_length=155, null=True)
+    # school = models.CharField(max_length=155, null=True)
     salary = models.DecimalField(max_digits=8, decimal_places=2, null=True)
 
 

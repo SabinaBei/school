@@ -6,7 +6,7 @@ from rest_framework import viewsets
 
 class EmployeeViewSet(viewsets.ModelViewSet):
     '''предоставляет для фронта информацию о курсах'''
-    queryset = Employee.objects.all()
+    queryset = Employee.objects.all().order_by('-id')
     serializer_class = EmployeeSerializers
     lookup_field = 'pk'
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
@@ -17,7 +17,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
 class PositionViewSet(viewsets.ModelViewSet):
     '''предоставляет для фронта информацию о курсах'''
-    queryset = Position.objects.all()
+    queryset = Position.objects.all().order_by('-id')
     serializer_class = PositionSerializers
     lookup_field = 'pk'
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
@@ -28,10 +28,15 @@ class PositionViewSet(viewsets.ModelViewSet):
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     '''предоставляет для фронта информацию о курсах'''
-    queryset = Department.objects.all()
+    queryset = Department.objects.all().order_by('-id')
     serializer_class = DepartmentSerializers
     lookup_field = 'pk'
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['name']
     search_fields = ['name']
     ordering_fields = ['name']
+
+
+# QuerySet — это набор данных из базы данных.
+# QuerySet создается как список объектов.
+# QuerySets упрощает получение данных, которые вам действительно нужны, позволяя фильтровать и упорядочивать данные.

@@ -14,6 +14,6 @@ class School(models.Model):
             'phone_number'
         )
 
-    def __str__(self):
+    def __str__(self):  # menyaet nazvanie ob'ekta
         return self.name
 

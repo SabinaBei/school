@@ -1,5 +1,24 @@
 from django.db import models
 from courses_app.models import Course
+from school_app.models import School
+
+
+class Department(models.Model):
+    name = models.CharField(max_length=155)
+    school = models.ForeignKey(School, on_delete=models.CASCADE, null=True)
+    description = models.TextField()
+
+
+    class Meta:
+        ordering = ['name']
+        unique_together = (
+            'name',
+            'school',
+            'description'
+        )
+
+    def __str__(self):
+        return self.name
 
 
 class Position(models.Model):
@@ -7,8 +26,8 @@ class Position(models.Model):
     duration = models.PositiveIntegerField()
     is_active = models.BooleanField(default=True)
     description = models.CharField(max_length=255)
-    permission = models.CharField(max_length=155)
-    id_department = models.CharField(max_length=155)
+    # permission = models.CharField(max_length=155)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
 
 
     class Meta:
@@ -17,7 +36,7 @@ class Position(models.Model):
             'name',
             'duration',
             'description',
-            'permission'
+            # 'permission'
         )
 
     def __str__(self):
@@ -29,7 +48,7 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=155)
     date_of_birth = models.DateField()
     phone_number = models.CharField(max_length=20)
-    email = models.EmailField()
+    email = models.EmailField(null=True, blank=True)
     FEMALE = 'F'
     MALE = 'M'
     GENDER_CHOICES = [(FEMALE, 'Female'),(MALE, 'Male'),]
@@ -42,6 +61,7 @@ class Employee(models.Model):
     position = models.ForeignKey(Position, on_delete=models.CASCADE, null=True)
     school = models.CharField(max_length=155, null=True)
     salary = models.DecimalField(max_digits=8, decimal_places=2, null=True)
+
 
     class Meta:
         ordering = ['first_name']
@@ -63,22 +83,3 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.first_name
-
-
-class Department(models.Model):
-    name = models.CharField(max_length=155)
-    duration = models.PositiveIntegerField()
-    is_active = models.BooleanField(default=True)
-    description = models.CharField(max_length=255)
-
-
-    class Meta:
-        ordering = ['name']
-        unique_together = (
-            'name',
-            'duration',
-            'description'
-        )
-
-    def __str__(self):
-        return self.name

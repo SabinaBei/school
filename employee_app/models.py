@@ -2,6 +2,7 @@ from django.db import models
 from courses_app.models import Course
 from school_app.models import School
 from django.contrib.auth.models import User
+from auth_app.models import MyUser
 
 
 class Department(models.Model):
@@ -37,7 +38,6 @@ class Position(models.Model):
             'name',
             'duration',
             'description',
-            # 'permission'
         )
 
     def __str__(self):
@@ -47,7 +47,7 @@ class Position(models.Model):
 class Employee(models.Model):
     # first_name = models.CharField(max_length=155)
     # last_name = models.CharField(max_length=155)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='employee', blank=True, null=True)
+    user = models.OneToOneField(MyUser, on_delete=models.CASCADE, related_name='employee', blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     phone_number = models.CharField(max_length=20)
     # email = models.EmailField(null=True, blank=True)

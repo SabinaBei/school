@@ -23,6 +23,4 @@ urlpatterns = [
     path('employee/', include('employee_app.urls')),
     path('school/', include('school_app.urls')),
     path('', include('auth_app.urls')),
-    # path('accounts/', include('django_registration.backends.one_step.urls')),
-    # path('accounts/', include('django.contrib.auth.urls')),
 ]

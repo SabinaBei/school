@@ -3,10 +3,12 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from students_app.models import Student
 from students_app.serializers import StudentSerializers
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 # class StudentViewSet(viewsets.ReadOnlyModelViewSet):
 class StudentViewSet(viewsets.ModelViewSet):
     '''предоставляет для фронта информацию о курсах'''
+    permission_classes = [IsAuthenticated]
     queryset = Student.objects.all()
     serializer_class = StudentSerializers
     lookup_field = 'pk'
